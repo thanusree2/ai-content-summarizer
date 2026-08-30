@@ -1,4 +1,5 @@
 import json
+import os
 from pydantic import field_validator
 from pydantic_settings import BaseSettings
 from functools import lru_cache
@@ -21,16 +22,18 @@ class Settings(BaseSettings):
     def parse_cors(cls, v):
         if isinstance(v, list):
             return v
-        if isinstance(v, str):
-            v = v.strip()
-            try:
-                parsed = json.loads(v)
-                if isinstance(parsed, list):
-                    return parsed
-            except (json.JSONDecodeError, ValueError):
-                pass
-            return [s.strip().strip('"').strip("'") for s in v.strip("[]").split(",") if s.strip()]
-        return ["http://localhost:5173", "http://localhost:3000"]
+        raw = v if isinstance(v, str) else str(v)
+        raw = raw.strip()
+        try:
+            parsed = json.loads(raw)
+            if isinstance(parsed, list):
+                return [str(s) for s in parsed]
+        except (json.JSONDecodeError, ValueError):
+            pass
+        cleaned = raw.strip("[]").strip("{}")
+        parts = [s.strip().strip('"').strip("'") for s in cleaned.split(",")]
+        result = [s for s in parts if s]
+        return result if result else ["http://localhost:5173", "http://localhost:3000"]
 
     model_config = {"env_file": ".env", "extra": "ignore"}
 
