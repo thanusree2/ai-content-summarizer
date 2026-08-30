@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://ai-content-summarizer.onrender.com/api/:path*"
+      "destination": "https://ai-content-summarizer-6gfq.onrender.com/api/:path*"
     }
   ]
 }
