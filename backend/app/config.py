@@ -19,12 +19,18 @@ class Settings(BaseSettings):
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
     def parse_cors(cls, v):
+        if isinstance(v, list):
+            return v
         if isinstance(v, str):
+            v = v.strip()
             try:
-                return json.loads(v)
-            except json.JSONDecodeError:
-                return [s.strip() for s in v.split(",")]
-        return v
+                parsed = json.loads(v)
+                if isinstance(parsed, list):
+                    return parsed
+            except (json.JSONDecodeError, ValueError):
+                pass
+            return [s.strip().strip('"').strip("'") for s in v.strip("[]").split(",") if s.strip()]
+        return ["http://localhost:5173", "http://localhost:3000"]
 
     model_config = {"env_file": ".env", "extra": "ignore"}
 
