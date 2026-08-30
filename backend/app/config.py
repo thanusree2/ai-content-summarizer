@@ -1,0 +1,22 @@
+from pydantic_settings import BaseSettings
+from functools import lru_cache
+
+
+class Settings(BaseSettings):
+    APP_NAME: str = "AI Content Summarizer"
+    DATABASE_URL: str = "sqlite:///./tincture.db"
+    JWT_SECRET: str = "tincture-secret-change-in-production"
+    JWT_ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
+    GEMINI_API_KEY: str = ""
+    GEMINI_MODEL: str = "gemini-2.0-flash"
+    GROQ_API_KEY: str = ""
+    GROQ_MODEL: str = "openai/gpt-oss-120b"
+    CORS_ORIGINS: list[str] = ["http://localhost:5173", "http://localhost:3000"]
+
+    model_config = {"env_file": ".env", "extra": "ignore"}
+
+
+@lru_cache
+def get_settings() -> Settings:
+    return Settings()
