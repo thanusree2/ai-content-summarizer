@@ -950,6 +950,28 @@
   margin: var(--space-4) 0;
   color: var(--text-secondary);
 }
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-4) 0;
+  font-size: var(--text-sm);
+}
+.markdown-body th {
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 2px solid var(--border);
+  color: var(--text-primary);
+  font-weight: 600;
+  background: var(--bg-elevated);
+}
+.markdown-body td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-primary);
+}
+.markdown-body tr:hover td {
+  background: var(--accent-subtle);
+}
 .markdown-fallback {
   white-space: pre-wrap;
   font-size: var(--text-base);

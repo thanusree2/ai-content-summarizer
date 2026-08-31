@@ -10,6 +10,7 @@
   --bg-input: #12121c;
   --text-primary: #e8e6f0;
   --text-secondary: #8b8a95;
+  --text-tertiary: #5a5965;
   --text-muted: #5a5965;
   --accent: #6366f1;
   --accent-hover: #818cf8;
@@ -79,6 +80,7 @@
   --bg-input: #f5f5f7;
   --text-primary: #1a1a2e;
   --text-secondary: #5a5a72;
+  --text-tertiary: #8a8a9e;
   --text-muted: #9a9aaa;
   --accent: #6366f1;
   --accent-hover: #4f46e5;
