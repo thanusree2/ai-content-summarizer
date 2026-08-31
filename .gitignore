@@ -3,6 +3,7 @@ backend/tincture.db
 backend/.env
 backend/__pycache__/
 backend/**/__pycache__/
+backend/check_db.py
 
 # Frontend
 frontend/node_modules/
