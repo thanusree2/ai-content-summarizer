@@ -5,8 +5,12 @@ from urllib.parse import urlparse
 
 import httpx
 from openai import OpenAI
-import google.generativeai as genai
 from app.config import get_settings
+
+try:
+    import google.generativeai as genai
+except Exception:
+    genai = None
 
 logger = logging.getLogger(__name__)
 settings = get_settings()
@@ -19,7 +23,7 @@ _gemini_configured = False
 
 def _get_gemini_model():
     global _gemini_configured
-    if not settings.GEMINI_API_KEY:
+    if genai is None or not settings.GEMINI_API_KEY:
         return None
     if not _gemini_configured:
         genai.configure(api_key=settings.GEMINI_API_KEY)
