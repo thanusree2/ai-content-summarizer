@@ -21,6 +21,7 @@ class Settings(BaseSettings):
         "https://ai-content-summarizer-eight.vercel.app",
         "https://ai-content-summarizer-qp7nzk5fx-thanusree2s-projects.vercel.app",
         "https://ai-content-summarizer.netlify.app",
+        "https://6a95a923ccc03530469a0c9--neon-daifuku-017f19.netlify.app",
     ]
 
     @field_validator("CORS_ORIGINS", mode="before")
